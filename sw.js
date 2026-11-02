@@ -1,5 +1,5 @@
 // SimpleCommunicate Service Worker (PWA + Web Push)
-const CACHE_NAME = 'simple-com-v3';
+const CACHE_NAME = 'simple-com-v4';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
@@ -54,45 +54,52 @@ self.addEventListener('fetch', (event) => {
   );
 });
 
-// PUSH: muncul di notifikasi HP walau app ditutup
-
+// PUSH: muncul di notifikasi HP walau app ditutup.
+// Judul, isi, dan tag datang dari backend (KANGEN / BATTERY / MOOD).
 self.addEventListener('push', (event) => {
   let data = {};
-
   try {
     data = event.data ? event.data.json() : {};
   } catch (e) {
     data = {};
   }
 
-  const title = data.title || '♥ Pasanganmu lagi kangen!';
-  const options = {
-    body: data.body || 'Dia menekan tombol KANGEN. Buka SimpleCom untuk membalas ♥',
+  const type = data.type || 'KANGEN_ALERT';
+  const isKangen = type === 'KANGEN_ALERT';
+  const title = data.title || 'SimpleCom';
+  const tag = data.tag || (isKangen ? 'kangen-alert' : String(type).toLowerCase());
 
+  const options = {
+    body: data.body || 'Ada kabar dari pasanganmu ♥',
     icon: './assets/icons/icon-192.png',
     badge: './assets/icons/icon-192.png',
-
-    tag: 'kangen-alert',
+    tag: tag,
     renotify: true,
-    requireInteraction: true,
-
-    // Jangan jadikan notifikasi senyap.
+    requireInteraction: isKangen,
     silent: false,
-
     timestamp: Date.now(),
-
     data: {
-      url: './index.html',
-      type: 'KANGEN_ALERT',
+      url: data.url || './index.html',
+      type: type,
       tone: data.tone || 'kalimba'
     }
   };
 
-  event.waitUntil(
-    self.registration.showNotification(title, options)
-  );
-});
+  event.waitUntil((async () => {
+    // Notifikasi SELALU ditampilkan (iOS bisa mencabut izin kalau push tidak menampilkan notif)
+    await self.registration.showNotification(title, options);
 
+    // Kalau app lagi terbuka, MQTT sudah memberi tahu langsung,
+    // jadi notifikasinya ditutup otomatis supaya tidak dobel.
+    const wins = await self.clients.matchAll({ type: 'window', includeUncontrolled: true });
+    const appVisible = wins.some((c) => c.visibilityState === 'visible');
+    if (appVisible) {
+      await new Promise((resolve) => setTimeout(resolve, 4000));
+      const list = await self.registration.getNotifications({ tag: tag });
+      list.forEach((n) => n.close());
+    }
+  })());
+});
 
 self.addEventListener('notificationclick', (event) => {
   event.notification.close();
