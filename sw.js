@@ -1,5 +1,5 @@
 // SimpleCommunicate Service Worker (PWA + Web Push)
-const CACHE_NAME = 'simple-com-v4';
+const CACHE_NAME = 'simple-com-v5';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
@@ -89,15 +89,6 @@ self.addEventListener('push', (event) => {
     // Notifikasi SELALU ditampilkan (iOS bisa mencabut izin kalau push tidak menampilkan notif)
     await self.registration.showNotification(title, options);
 
-    // Kalau app lagi terbuka, MQTT sudah memberi tahu langsung,
-    // jadi notifikasinya ditutup otomatis supaya tidak dobel.
-    const wins = await self.clients.matchAll({ type: 'window', includeUncontrolled: true });
-    const appVisible = wins.some((c) => c.visibilityState === 'visible');
-    if (appVisible) {
-      await new Promise((resolve) => setTimeout(resolve, 4000));
-      const list = await self.registration.getNotifications({ tag: tag });
-      list.forEach((n) => n.close());
-    }
   })());
 });
 
