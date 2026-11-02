@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <circle cx="100" cy="100" r="100" fill="#f4f6fa"/>
+  <circle cx="100" cy="100" r="97" fill="none" stroke="#e6e9f0" stroke-width="3"/>
+  <!-- Head -->
+  <circle cx="100" cy="76" r="36" fill="#fbe9df"/>
+  <!-- Hair -->
+  <path d="M64 74 C64 42 76 36 100 36 C124 36 136 42 136 74 C128 56 114 56 100 55 C86 56 72 56 64 74 Z" fill="#383c48"/>
+  <!-- Eyes -->
+  <circle cx="88" cy="78" r="3.5" fill="#2d313a"/>
+  <circle cx="112" cy="78" r="3.5" fill="#2d313a"/>
+  <!-- Smile -->
+  <path d="M93 90 Q100 96 107 90" stroke="#2d313a" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+  <!-- Soft Blush -->
+  <circle cx="82" cy="85" r="5" fill="#f4aabf" opacity="0.5"/>
+  <circle cx="118" cy="85" r="5" fill="#f4aabf" opacity="0.5"/>
+  <!-- Minimalist Clothes -->
+  <path d="M54 165 C58 126 78 120 100 120 C122 120 142 126 146 165 Z" fill="#4a5060"/>
+  <path d="M92 120 L100 136 L108 120" stroke="#e0e4ec" stroke-width="2.5" fill="none"/>
+</svg>

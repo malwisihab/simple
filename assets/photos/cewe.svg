@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <circle cx="100" cy="100" r="100" fill="#fcf3f6"/>
+  <circle cx="100" cy="100" r="97" fill="none" stroke="#f4dbe3" stroke-width="3"/>
+  <!-- Long Hair Back -->
+  <path d="M58 72 C52 115 56 150 64 165 C70 165 74 135 74 95 Z" fill="#4d3b43"/>
+  <path d="M142 72 C148 115 144 150 136 165 C130 165 126 135 126 95 Z" fill="#4d3b43"/>
+  <!-- Head -->
+  <circle cx="100" cy="76" r="36" fill="#fff0e6"/>
+  <!-- Hair Front -->
+  <path d="M62 76 C62 40 76 34 100 34 C124 34 138 40 138 76 C132 58 118 56 100 55 C82 56 68 58 62 76 Z" fill="#4d3b43"/>
+  <!-- Cute Hair Ribbon / Pin -->
+  <circle cx="72" cy="54" r="5" fill="#d64d76"/>
+  <!-- Eyes -->
+  <circle cx="88" cy="78" r="3.5" fill="#2d313a"/>
+  <circle cx="112" cy="78" r="3.5" fill="#2d313a"/>
+  <!-- Smile -->
+  <path d="M93 91 Q100 97 107 91" stroke="#2d313a" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+  <!-- Soft Blush -->
+  <circle cx="81" cy="85" r="6" fill="#f29bb4" opacity="0.6"/>
+  <circle cx="119" cy="85" r="6" fill="#f29bb4" opacity="0.6"/>
+  <!-- Minimalist Clothes -->
+  <path d="M56 165 C60 126 78 120 100 120 C122 120 140 126 144 165 Z" fill="#d64d76"/>
+  <circle cx="100" cy="130" r="3" fill="#ffffff"/>
+</svg>

@@ -1,0 +1,1026 @@
+/* ========================================================
+   SimpleCommunicate - Minimalist Aesthetic White & Soft Rose Theme
+   Clean, Calming, Soft & Elegant Design
+   ======================================================== */
+
+:root {
+  --bg-page: #f8f9fc;
+  --bg-card: #ffffff;
+  --bg-subtle: #f2f4f8;
+  --bg-hover: #eef1f6;
+
+  --text-main: #1c2029;
+  --text-body: #4c5364;
+  --text-muted: #8d95a5;
+
+  --rose-main: #d64d76;
+  --rose-hover: #c43c65;
+  --rose-soft: #fdf2f5;
+  --rose-border: #f7d2dd;
+  --rose-shadow: rgba(214, 77, 118, 0.16);
+
+  --border-card: #eaedf3;
+  --border-light: #f0f2f7;
+
+  --radius-xl: 24px;
+  --radius-lg: 18px;
+  --radius-md: 12px;
+  --radius-sm: 8px;
+  --radius-full: 9999px;
+
+  --font-main: -apple-system, BlinkMacSystemFont, 'Plus Jakarta Sans', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --shadow-subtle: 0 4px 20px rgba(18, 22, 33, 0.04), 0 1px 3px rgba(18, 22, 33, 0.02);
+  --shadow-card: 0 8px 30px rgba(18, 22, 33, 0.06);
+  --transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--bg-page);
+  color: var(--text-main);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Mobile Centered Layout */
+.app-container {
+  width: 100%;
+  max-width: 440px;
+  min-height: 100vh;
+  padding: 16px 16px 70px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+}
+
+/* Header */
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 18px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-subtle);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  background: var(--rose-soft);
+  color: var(--rose-main);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  border: 1px solid var(--rose-border);
+}
+
+.brand-text h1 {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-main);
+  letter-spacing: -0.3px;
+}
+
+.brand-text h1 span {
+  color: var(--rose-main);
+}
+
+.brand-text .status-tag {
+  font-size: 11px;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 1px;
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #cbd0dc;
+  transition: var(--transition);
+}
+
+.status-dot.online {
+  background: #10b981;
+  box-shadow: 0 0 6px rgba(16, 185, 129, 0.4);
+}
+
+.status-dot.connecting {
+  background: #f59e0b;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.icon-btn {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-light);
+  color: var(--text-body);
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 14px;
+  transition: var(--transition);
+}
+
+.icon-btn:hover {
+  background: var(--bg-hover);
+  color: var(--text-main);
+}
+
+.icon-btn:active {
+  transform: scale(0.92);
+}
+
+/* Days Together Pill (Anniversary Banner) */
+.days-banner {
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-md);
+  padding: 8px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: var(--shadow-subtle);
+  cursor: pointer;
+}
+
+.days-banner-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-body);
+}
+
+.days-count-highlight {
+  color: var(--rose-main);
+  font-weight: 700;
+  background: var(--rose-soft);
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--rose-border);
+}
+
+.days-edit-tip {
+  font-size: 10px;
+  color: var(--text-muted);
+}
+
+/* Couple Status Card */
+.couple-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-xl);
+  padding: 16px 14px;
+  box-shadow: var(--shadow-subtle);
+}
+
+.couple-grid {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 6px;
+}
+
+.partner-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  padding: 6px 4px;
+  border-radius: var(--radius-md);
+  transition: var(--transition);
+}
+
+.partner-box:active {
+  background: var(--bg-subtle);
+}
+
+.avatar-wrapper {
+  position: relative;
+  width: 62px;
+  height: 62px;
+  margin-bottom: 6px;
+}
+
+.avatar-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--border-card);
+  background-color: var(--bg-subtle);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: var(--transition);
+}
+
+.partner-box.active-role .avatar-img {
+  border-color: var(--rose-main);
+  box-shadow: 0 0 0 3px var(--rose-soft);
+}
+
+.partner-role-badge {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  font-size: 10px;
+  padding: 1px 6px;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  color: var(--text-body);
+}
+
+.partner-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.partner-mood-text {
+  font-size: 11px;
+  color: var(--rose-main);
+  background: var(--rose-soft);
+  border: 1px solid var(--rose-border);
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  margin-top: 5px;
+  max-width: 100px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 600;
+}
+
+.partner-online-status {
+  font-size: 10px;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+/* Center Connection Bridge */
+.heart-bridge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.bridge-icon-circle {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--rose-soft);
+  border: 1px solid var(--rose-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--rose-main);
+  font-size: 15px;
+}
+
+.room-pin-pill {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: var(--bg-subtle);
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-light);
+  cursor: pointer;
+}
+
+/* ========================================================
+   THE SOFT KANGEN & VIBRATION BUTTON (CORE)
+   ======================================================== */
+.kangen-section {
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-xl);
+  padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-shadow: var(--shadow-card);
+  position: relative;
+}
+
+.kangen-heading {
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--text-main);
+  letter-spacing: -0.3px;
+}
+
+.kangen-sub {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 3px;
+  margin-bottom: 22px;
+}
+
+/* Minimalist Soft Heart Trigger Button */
+.soft-kangen-btn {
+  position: relative;
+  width: 136px;
+  height: 136px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #e45882, #d1416c);
+  border: 4px solid #ffffff;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  box-shadow: 
+    0 10px 24px var(--rose-shadow),
+    0 2px 6px rgba(0, 0, 0, 0.06);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  animation: softPulse 3s infinite ease-in-out;
+}
+
+.soft-kangen-btn:active {
+  transform: scale(0.92);
+  box-shadow: 0 4px 12px var(--rose-shadow);
+}
+
+.soft-kangen-btn .btn-heart-icon {
+  font-size: 40px;
+  line-height: 1;
+}
+
+.soft-kangen-btn .btn-label {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-top: 3px;
+}
+
+.kangen-footer-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.kangen-counter-box {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-light);
+  padding: 5px 14px;
+  border-radius: var(--radius-full);
+}
+
+.counter-num {
+  font-weight: 800;
+  color: var(--rose-main);
+  font-size: 13px;
+}
+
+.counter-label {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.test-tone-btn {
+  background: var(--rose-soft);
+  border: 1px solid var(--rose-border);
+  color: var(--rose-main);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: var(--transition);
+}
+
+.test-tone-btn:active {
+  transform: scale(0.95);
+}
+
+/* ========================================================
+   FEATURE 2: LOVE BATTERY (BATERAI CINTA)
+   ======================================================== */
+.feature-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-lg);
+  padding: 14px 16px;
+  box-shadow: var(--shadow-subtle);
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.section-title {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--text-muted);
+}
+
+.battery-display-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.battery-box {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.battery-box-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-body);
+}
+
+.battery-pct-label {
+  font-weight: 800;
+  color: var(--rose-main);
+}
+
+.battery-bar-track {
+  height: 6px;
+  background: #e2e6ee;
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.battery-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #f07297, var(--rose-main));
+  border-radius: var(--radius-full);
+  transition: width 0.4s ease;
+}
+
+.battery-quick-picker {
+  display: flex;
+  gap: 6px;
+}
+
+.battery-opt-btn {
+  flex: 1;
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  color: var(--text-body);
+  padding: 6px 4px;
+  border-radius: var(--radius-sm);
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.battery-opt-btn.active, .battery-opt-btn:hover {
+  background: var(--rose-soft);
+  color: var(--rose-main);
+  border-color: var(--rose-border);
+}
+
+/* ========================================================
+   FEATURE 3: STATUS / MOOD CHIPS
+   ======================================================== */
+.mood-container {
+  display: flex;
+  gap: 7px;
+  overflow-x: auto;
+  padding: 2px 2px 4px 2px;
+  scrollbar-width: none;
+}
+
+.mood-container::-webkit-scrollbar {
+  display: none;
+}
+
+.mood-chip {
+  flex-shrink: 0;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-light);
+  color: var(--text-body);
+  padding: 7px 12px;
+  border-radius: var(--radius-full);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.mood-chip:active, .mood-chip.active {
+  background: var(--rose-soft);
+  color: var(--rose-main);
+  border-color: var(--rose-border);
+}
+
+/* ========================================================
+   FEATURE 4: COUPLE BUCKET LIST / WISH KENCAN
+   ======================================================== */
+.bucket-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.bucket-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  font-size: 12px;
+  color: var(--text-body);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.bucket-item.checked {
+  background: var(--rose-soft);
+  border-color: var(--rose-border);
+  color: var(--rose-main);
+  text-decoration: line-through;
+}
+
+.bucket-checkbox {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  border: 1.5px solid var(--border-card);
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  color: transparent;
+  flex-shrink: 0;
+  transition: var(--transition);
+}
+
+.bucket-item.checked .bucket-checkbox {
+  background: var(--rose-main);
+  border-color: var(--rose-main);
+  color: #ffffff;
+}
+
+.bucket-input-row {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.bucket-input {
+  flex: 1;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-light);
+  padding: 8px 12px;
+  border-radius: var(--radius-md);
+  font-size: 12px;
+  color: var(--text-main);
+  outline: none;
+}
+
+.bucket-input:focus {
+  border-color: var(--rose-border);
+  background: #ffffff;
+}
+
+.bucket-add-btn {
+  background: var(--rose-main);
+  color: #ffffff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: var(--radius-md);
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* ========================================================
+   FEATURE 5: SOFT LOVE NOTES
+   ======================================================== */
+.notes-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 180px;
+  overflow-y: auto;
+  padding-right: 2px;
+}
+
+.note-bubble {
+  padding: 9px 12px;
+  border-radius: var(--radius-md);
+  font-size: 12px;
+  line-height: 1.4;
+  max-width: 85%;
+}
+
+.note-bubble.mine {
+  align-self: flex-end;
+  background: var(--rose-main);
+  color: #ffffff;
+  border-bottom-right-radius: 2px;
+}
+
+.note-bubble.partner {
+  align-self: flex-start;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-light);
+  color: var(--text-main);
+  border-bottom-left-radius: 2px;
+}
+
+.note-meta {
+  font-size: 10px;
+  opacity: 0.75;
+  margin-top: 3px;
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.note-input-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.note-input {
+  flex: 1;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-light);
+  color: var(--text-main);
+  padding: 9px 14px;
+  border-radius: var(--radius-full);
+  font-size: 12px;
+  outline: none;
+}
+
+.note-input:focus {
+  border-color: var(--rose-border);
+  background: #ffffff;
+}
+
+.note-send-btn {
+  background: var(--rose-main);
+  border: none;
+  color: #ffffff;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+/* ========================================================
+   AESTHETIC FULLSCREEN ALERT MODAL (MINIMALIST WHITE)
+   ======================================================== */
+.alert-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 9999;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  text-align: center;
+}
+
+.alert-overlay.show {
+  display: flex;
+}
+
+.alert-card-inner {
+  background: #ffffff;
+  border: 1px solid var(--rose-border);
+  border-radius: var(--radius-xl);
+  padding: 32px 24px;
+  max-width: 340px;
+  width: 100%;
+  box-shadow: 0 16px 40px rgba(214, 77, 118, 0.12);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.alert-icon-heart {
+  font-size: 58px;
+  animation: gentleBounce 0.7s infinite alternate ease-in-out;
+  margin-bottom: 12px;
+}
+
+.alert-title {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--text-main);
+  letter-spacing: -0.4px;
+}
+
+.alert-title span {
+  color: var(--rose-main);
+}
+
+.alert-desc {
+  font-size: 13px;
+  color: var(--text-body);
+  margin-top: 8px;
+  line-height: 1.5;
+}
+
+.alert-dismiss-btn {
+  margin-top: 24px;
+  background: var(--rose-main);
+  border: none;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 11px 30px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  box-shadow: 0 4px 14px var(--rose-shadow);
+  transition: var(--transition);
+}
+
+.alert-dismiss-btn:active {
+  transform: scale(0.95);
+}
+
+/* ========================================================
+   MODAL / SETTINGS DIALOG
+   ======================================================== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(18, 22, 33, 0.4);
+  backdrop-filter: blur(6px);
+  z-index: 500;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modal-overlay.open {
+  display: flex;
+}
+
+.modal-sheet {
+  width: 100%;
+  max-width: 380px;
+  background: #ffffff;
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-xl);
+  padding: 22px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-header h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.setting-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.setting-group label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.role-switcher-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.role-switch-btn {
+  background: var(--bg-subtle);
+  border: 1.5px solid var(--border-light);
+  color: var(--text-main);
+  padding: 10px;
+  border-radius: var(--radius-md);
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+  transition: var(--transition);
+}
+
+.role-switch-btn.selected {
+  border-color: var(--rose-main);
+  background: var(--rose-soft);
+  color: var(--rose-main);
+}
+
+.tone-picker-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 6px;
+}
+
+.tone-opt-btn {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-light);
+  color: var(--text-body);
+  padding: 8px 4px;
+  border-radius: var(--radius-sm);
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+}
+
+.tone-opt-btn.selected {
+  background: var(--rose-soft);
+  border-color: var(--rose-border);
+  color: var(--rose-main);
+}
+
+.input-field {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-light);
+  color: var(--text-main);
+  padding: 9px 12px;
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  outline: none;
+}
+
+.input-field:focus {
+  border-color: var(--rose-border);
+  background: #ffffff;
+}
+
+.btn-primary {
+  background: var(--rose-main);
+  border: none;
+  color: #ffffff;
+  padding: 11px;
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.btn-primary:active {
+  transform: scale(0.97);
+}
+
+/* Hidden file input */
+.hidden-file-input {
+  display: none;
+}
+
+/* Floating Hearts FX (Subtle) */
+.floating-heart {
+  position: fixed;
+  pointer-events: none;
+  font-size: 20px;
+  z-index: 10000;
+  animation: floatUpSoft 1.6s forwards ease-out;
+}
+
+@keyframes softPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.04); }
+}
+
+@keyframes gentleBounce {
+  0% { transform: translateY(0) scale(0.95); }
+  100% { transform: translateY(-8px) scale(1.05); }
+}
+
+@keyframes floatUpSoft {
+  0% {
+    opacity: 0.9;
+    transform: translateY(0) scale(0.8);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-160px) scale(1.2);
+  }
+}
+.bucket-text {
+  flex: 1;
+  min-width: 0;
+  word-break: break-word;
+}
+
+.bucket-delete-btn {
+  margin-left: auto;
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 12px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s, color 0.15s;
+}
+
+.bucket-delete-btn:hover,
+.bucket-delete-btn:active {
+  background: rgba(244, 63, 94, 0.12);
+  color: var(--rose-main);
+}
+.bucket-delete-btn {
+  text-decoration: none;
+}

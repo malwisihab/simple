@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>SimpleCommunicate</title>
+
+  <!-- PWA Meta Tags -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="SimpleCom">
+  <meta name="mobile-web-app-capable" content="yes">
+
+  <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
+  <link rel="icon" type="image/svg+xml" href="assets/icons/icon.svg">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Floating Hearts Container -->
+  <div id="floating-hearts-layer"></div>
+
+  <!-- Main Container -->
+  <div class="app-container">
+
+    <!-- Header -->
+    <header class="app-header">
+      <div class="brand">
+        <div class="brand-icon">♡</div>
+        <div class="brand-text">
+          <h1>Simple<span>Com</span></h1>
+          <div class="status-tag">
+            <span class="status-dot connecting" id="conn-dot"></span>
+            <span id="conn-text">Menghubungkan...</span>
+          </div>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button class="icon-btn" id="sound-btn" title="Suara">🔊</button>
+        <button class="icon-btn" id="settings-btn" title="Pengaturan">⚙</button>
+      </div>
+    </header>
+
+    <!-- Anniversary Days Counter Banner -->
+    <div class="days-banner" id="days-banner-btn" title="Klik untuk atur tanggal jadian">
+      <div class="days-banner-left">
+        <span>Hari Bersama</span>
+        <span class="days-count-highlight" id="days-count-label">0 Hari</span>
+      </div>
+      <span class="days-edit-tip">Ubah tanggal ✎</span>
+    </div>
+
+    <!-- Couple Profile & Status Card -->
+    <section class="couple-card">
+      <div class="couple-grid">
+        
+        <!-- Cowo Box -->
+        <div class="partner-box" id="box-cowo" title="Ganti foto">
+          <div class="avatar-wrapper">
+            <img src="assets/photos/cowo.svg" id="avatar-cowo" class="avatar-img" alt="Cowo">
+            <span class="partner-role-badge">Cowo</span>
+          </div>
+          <div class="partner-name">
+            <span id="name-cowo">Cowo</span>
+            <span id="badge-cowo-you" style="display: none; color: var(--rose-main); font-size: 10px;">(Kamu)</span>
+          </div>
+          <div class="partner-mood-text" id="mood-cowo">Mikirin kamu</div>
+          <div class="partner-online-status" id="ping-cowo">⚪ Offline</div>
+        </div>
+
+        <!-- Center Connection -->
+        <div class="heart-bridge">
+          <div class="bridge-icon-circle">♡</div>
+          <div class="room-pin-pill" id="room-pin-display" title="Klik untuk ubah PIN Kamar">
+            PIN: <span id="room-code-label">love2024</span>
+          </div>
+        </div>
+
+        <!-- Cewe Box -->
+        <div class="partner-box" id="box-cewe" title="Ganti foto">
+          <div class="avatar-wrapper">
+            <img src="assets/photos/cewe.svg" id="avatar-cewe" class="avatar-img" alt="Cewe">
+            <span class="partner-role-badge">Cewe</span>
+          </div>
+          <div class="partner-name">
+            <span id="name-cewe">Cewe</span>
+            <span id="badge-cewe-you" style="display: none; color: var(--rose-main); font-size: 10px;">(Kamu)</span>
+          </div>
+          <div class="partner-mood-text" id="mood-cewe">Menunggu kabar</div>
+          <div class="partner-online-status" id="ping-cewe">⚪ Offline</div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Core: Tombol Kangen & Getar -->
+    <main class="kangen-section">
+      <h2 class="kangen-heading">Tombol Kangen</h2>
+      <p class="kangen-sub">Pencet untuk kirim getaran & nada ke HP pasanganmu</p>
+
+      <button class="soft-kangen-btn" id="kangen-trigger-btn" aria-label="Kirim Kangen">
+        <span class="btn-heart-icon">♥</span>
+        <span class="btn-label">KANGEN</span>
+      </button>
+
+      <div class="kangen-footer-row">
+        <div class="kangen-counter-box">
+          <span class="counter-num" id="kangen-counter">0</span>
+          <span class="counter-label">kali hari ini</span>
+        </div>
+        <button class="test-tone-btn" id="test-tone-btn">
+          <span>♪</span> Tes Nada
+        </button>
+      </div>
+    </main>
+
+    <!-- Feature 2: Love Battery (Baterai Cinta) -->
+    <section class="feature-card">
+      <div class="section-header">
+        <span class="section-title">Baterai Energi </span>
+        <span style="font-size: 11px; color: var(--text-muted);" id="battery-status-tip">Atur energimu</span>
+      </div>
+
+      <div class="battery-display-row">
+        <div class="battery-box">
+          <div class="battery-box-header">
+            <span>Cowo</span>
+            <span class="battery-pct-label" id="battery-pct-cowo">100%</span>
+          </div>
+          <div class="battery-bar-track">
+            <div class="battery-bar-fill" id="battery-fill-cowo" style="width: 100%;"></div>
+          </div>
+        </div>
+
+        <div class="battery-box">
+          <div class="battery-box-header">
+            <span>Cewe</span>
+            <span class="battery-pct-label" id="battery-pct-cewe">100%</span>
+          </div>
+          <div class="battery-bar-track">
+            <div class="battery-bar-fill" id="battery-fill-cewe" style="width: 100%;"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="battery-quick-picker">
+        <button class="battery-opt-btn" data-pct="5">5% Lelah Maksimal</button>
+        <button class="battery-opt-btn" data-pct="25">25% Lelah</button>
+        <button class="battery-opt-btn" data-pct="50">50% Sedang</button>
+        <button class="battery-opt-btn" data-pct="75">75% Nyaman</button>
+        <button class="battery-opt-btn active" data-pct="100">100% Full</button>
+      </div>
+    </section>
+
+    <!-- Feature 3: Status Ringkas (Lagi Apa?) -->
+    <section class="feature-card">
+      <div class="section-header">
+        <span class="section-title">Status Saat Ini</span>
+      </div>
+      <div class="mood-container">
+        <button class="mood-chip" data-mood="Lagi Santai">Lagi Santai</button>
+        <button class="mood-chip" data-mood="Lagi Makan">Lagi Makan</button>
+        <button class="mood-chip" data-mood="Lagi Sibuk">Lagi Sibuk</button>
+        <button class="mood-chip" data-mood="Mau Bobo">Mau Bobo</button>
+        <button class="mood-chip" data-mood="Lagi Nonton">Lagi Nonton</button>
+        <button class="mood-chip" data-mood="OTW Pulang">OTW Pulang</button>
+        <button class="mood-chip" data-mood="Kangen Banget">Kangen</button>
+      </div>
+    </section>
+
+    <!-- Feature 4: Wishlist Kencan Berdua (Bucket List) -->
+    <section class="feature-card">
+      <div class="section-header">
+        <span class="section-title">Rencana Main</span>
+        <span style="font-size: 11px; color: var(--rose-main);">Bisa dicentang berdua</span>
+      </div>
+      <div class="bucket-list" id="bucket-list-container">
+        <!-- Wishlist items dynamically loaded -->
+      </div>
+      <form class="bucket-input-row" id="bucket-form">
+        <input type="text" class="bucket-input" id="bucket-input" placeholder="Tambah rencana baru..." maxlength="50">
+        <button type="submit" class="bucket-add-btn">+ Tambah</button>
+      </form>
+    </section>
+
+    <!-- Feature 5: Catatan Manis -->
+    <section class="feature-card">
+      <div class="section-header">
+        <span class="section-title">Catatan </span>
+      </div>
+      <div class="notes-container" id="notes-list">
+        <!-- Notes dynamically populated -->
+      </div>
+      <form class="note-input-row" id="note-form">
+        <input type="text" class="note-input" id="note-input" placeholder="Tulis catatan singkat..." maxlength="120" autocomplete="off">
+        <button type="submit" class="note-send-btn" title="Kirim">➤</button>
+      </form>
+    </section>
+
+  </div>
+
+  <!-- Clean Alert Modal saat Pasangan Pencet Kangen -->
+  <div class="alert-overlay" id="kangen-alert-modal">
+    <div class="alert-card-inner">
+      <div class="alert-icon-heart">♥</div>
+      <h2 class="alert-title"><span id="alert-sender-name">Temanmu</span> Lagi Kangen</h2>
+      <p class="alert-desc" id="alert-desc-text">
+        Tombol kangen baru saja dipencet! Ada getaran dan nada manis untukmu.
+      </p>
+      <button class="alert-dismiss-btn" id="alert-dismiss-btn">Balas Kangen ♡</button>
+    </div>
+  </div>
+
+  <!-- Settings Modal -->
+  <div class="modal-overlay" id="settings-modal">
+    <div class="modal-sheet">
+      <div class="modal-header">
+        <h3>Settings</h3>
+        <button class="icon-btn" id="close-settings-btn">✕</button>
+      </div>
+
+      <div class="setting-group">
+        <label>Peran Kamu:</label>
+        <div class="role-switcher-row">
+          <button class="role-switch-btn" id="role-btn-cowo" data-role="cowo">
+            <span>👦</span>
+            <span>Alwi</span>
+          </button>
+          <button class="role-switch-btn" id="role-btn-cewe" data-role="cewe">
+            <span>👧</span>
+            <span>Nadira</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="setting-group">
+        <label>Notifikasi (saat app ditutup):</label>
+        <button class="btn-primary" id="enable-push-btn" style="background: var(--bg-subtle); color: var(--text-main); border: 1px solid var(--border-light);">
+          🔔 Aktifkan Notifikasi
+        </button>
+        <p id="push-status" style="font-size: 11px; color: var(--text-muted); margin-top: 6px; line-height: 1.4;"></p>
+      </div>
+
+      <div class="setting-group">
+        <label>Pilihan Nada Kangen:</label>
+          <div class="tone-picker-grid">
+          <button class="tone-opt-btn selected" data-tone="kalimba">Kalimba</button>
+          <button class="tone-opt-btn" data-tone="musicbox">Kotak Musik</button>
+          <button class="tone-opt-btn" data-tone="heartbeat">Detak Jantung</button>
+          <button class="tone-opt-btn" data-tone="piano">Piano</button>
+          <button class="tone-opt-btn" data-tone="bell">Lonceng</button>
+          <button class="tone-opt-btn" data-tone="harp">Harpa</button>
+          <button class="tone-opt-btn" data-tone="marimba">Marimba</button>
+          <button class="tone-opt-btn" data-tone="sparkle">Bintang</button>
+          <button class="tone-opt-btn" data-tone="lullaby">Nina Bobo</button>
+          <button class="tone-opt-btn" data-tone="dingdong">Ding Dong</button>
+        </div>
+      </div>
+
+      <div class="setting-group">
+        <label for="anniversary-input">Tanggal Bersama:</label>
+        <input type="date" id="anniversary-input" class="input-field">
+      </div>
+
+      <div class="setting-group">
+        <label for="room-code-input">PIN:</label>
+        <input type="text" id="room-code-input" class="input-field" placeholder="contoh: love2024" maxlength="20">
+      </div>
+
+      <div class="setting-group">
+        <label>Foto Profil:</label>
+        <button class="btn-primary" id="upload-photo-btn" style="background: var(--bg-subtle); color: var(--text-main); border: 1px solid var(--border-light);">
+          📷 Pilih Foto dari Galeri
+        </button>
+      </div>
+
+      <button class="btn-primary" id="save-settings-btn">Simpan Pengaturan</button>
+    </div>
+  </div>
+
+  <input type="file" id="photo-file-input" class="hidden-file-input" accept="image/*">
+  <!-- DEBUG sementara: tampilkan error di halaman -->
+  <script>
+    function showErr(t) {
+      var el = document.getElementById('conn-text');
+      if (el) { el.textContent = t; el.style.color = 'red'; el.style.fontSize = '11px'; }
+    }
+    window.addEventListener('error', function (e) {
+      if (e.target && e.target.src) {
+        showErr('GAGAL MUAT: ' + e.target.src.split('/').slice(-2).join('/'));
+      } else {
+        showErr('ERR: ' + e.message + ' @' + String(e.filename || '').split('/').pop() + ':' + e.lineno);
+      }
+    }, true);
+    window.addEventListener('unhandledrejection', function (e) {
+      showErr('ERR: ' + (e.reason && e.reason.message ? e.reason.message : e.reason));
+    });
+  </script>
+  
+  <!-- Scripts -->
+  <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
