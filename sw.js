@@ -1,5 +1,5 @@
 // SimpleCommunicate Service Worker (PWA + Web Push)
-const CACHE_NAME = 'simple-com-v2';
+const CACHE_NAME = 'simple-com-v3';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
@@ -55,32 +55,44 @@ self.addEventListener('fetch', (event) => {
 });
 
 // PUSH: muncul di notifikasi HP walau app ditutup
+
 self.addEventListener('push', (event) => {
   let data = {};
+
   try {
     data = event.data ? event.data.json() : {};
   } catch (e) {
     data = {};
   }
 
-  const title = data.title || 'Pasanganmu lagi kangen ♥';
+  const title = data.title || '♥ Pasanganmu lagi kangen!';
   const options = {
-    body: data.body || 'Tombol kangen baru saja dipencet. Buka untuk membalas ♡',
+    body: data.body || 'Dia menekan tombol KANGEN. Buka SimpleCom untuk membalas ♥',
+
     icon: './assets/icons/icon-192.png',
     badge: './assets/icons/icon-192.png',
+
     tag: 'kangen-alert',
     renotify: true,
     requireInteraction: true,
-    vibrate: [400, 150, 400, 150, 400, 150, 800, 300, 400, 150, 400, 150, 800],
-    data: { url: './index.html' }
+
+    // Jangan jadikan notifikasi senyap.
+    silent: false,
+
+    timestamp: Date.now(),
+
+    data: {
+      url: './index.html',
+      type: 'KANGEN_ALERT',
+      tone: data.tone || 'kalimba'
+    }
   };
 
-  event.waitUntil((async () => {
-    const wins = await self.clients.matchAll({ type: 'window', includeUncontrolled: true });
-    if (wins.some((c) => c.visibilityState === 'visible')) return;
-    await self.registration.showNotification(title, options);
-  })());
+  event.waitUntil(
+    self.registration.showNotification(title, options)
+  );
 });
+
 
 self.addEventListener('notificationclick', (event) => {
   event.notification.close();

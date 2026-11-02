@@ -7,12 +7,21 @@ export default async (req) => {
   const { room, role, subscription } = body || {};
 
   if (!validRoom(room) || !validRole(role) ||
-      !subscription?.endpoint || !subscription?.keys?.p256dh || !subscription?.keys?.auth) {
+      typeof subscription?.endpoint !== "string" ||
+      !subscription.endpoint.startsWith("https://") ||
+      !subscription?.keys?.p256dh || !subscription?.keys?.auth) {
     return json({ error: "Data subscription tidak valid" }, 400);
   }
 
+  // Simpan hanya field yang dibutuhkan
+  const clean = {
+    endpoint: subscription.endpoint,
+    expirationTime: subscription.expirationTime ?? null,
+    keys: { p256dh: subscription.keys.p256dh, auth: subscription.keys.auth }
+  };
+
   try {
-    await saveSubscription(room.toLowerCase(), role, subscription);
+    await saveSubscription(room.toLowerCase(), role, clean);
     return json({ ok: true });
   } catch (err) {
     console.error(err);

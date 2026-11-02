@@ -1,4 +1,3 @@
-
 [build]
   publish = "."
   functions = "netlify/functions"
@@ -40,4 +39,9 @@
 [[redirects]]
   from = "/api/battery"
   to = "/.netlify/functions/battery"
+  status = 200
+
+[[redirects]]
+  from = "/api/mood"
+  to = "/.netlify/functions/mood"
   status = 200
