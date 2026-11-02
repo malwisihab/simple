@@ -205,6 +205,7 @@
   }
 
   function setMyBattery(pct) {
+    const eventId = newEventId();
     localStorage.setItem(KEY_BATTERY_MINE, pct);
     updateBatteryUI(currentRole, pct);
 
@@ -212,8 +213,11 @@
       type: 'BATTERY_UPDATE',
       sender: currentRole,
       pct: pct,
+      eventId: eventId,
       timestamp: Date.now()
     });
+
+    sendBatteryPush(pct, eventId);
   }
 
   function updateBatteryUI(role, pct) {
@@ -335,6 +339,12 @@
     } else {
       kangenCounter.textContent = localStorage.getItem(KEY_COUNT) || '0';
     }
+  }
+
+  function setCounter(n) {
+    localStorage.setItem(KEY_DATE, new Date().toDateString());
+    localStorage.setItem(KEY_COUNT, String(n));
+    kangenCounter.textContent = n;
   }
 
   function incrementCounter() {
@@ -560,15 +570,51 @@
     }
   }
 
-  function sendPushToPartner(tone) {
+  function newEventId() {
+    if (window.crypto && crypto.randomUUID) return crypto.randomUUID();
+    return 'e' + Date.now().toString(36) + Math.random().toString(36).slice(2, 10);
+  }
+
+  async function postApi(path, payload) {
     try {
-      fetch('/api/kangen', {
+      const res = await fetch(path, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ room: currentRoom, sender: currentRole, tone: tone }),
+        body: JSON.stringify(payload),
         keepalive: true
-      }).catch(() => {});
-    } catch (e) { /* abaikan */ }
+      });
+      return await res.json();
+    } catch (e) {
+      return null;
+    }
+  }
+
+  async function sendPushToPartner(tone, eventId) {
+    const data = await postApi('/api/kangen', {
+      room: currentRoom,
+      sender: currentRole,
+      tone: tone,
+      eventId: eventId
+    });
+    if (data && typeof data.count === 'number') setCounter(data.count);
+  }
+
+  async function sendBatteryPush(pct, eventId) {
+    await postApi('/api/battery', {
+      room: currentRoom,
+      sender: currentRole,
+      pct: Number(pct),
+      eventId: eventId
+    });
+  }
+
+  async function sendMoodPush(mood, eventId) {
+    await postApi('/api/mood', {
+      room: currentRoom,
+      sender: currentRole,
+      mood: mood,
+      eventId: eventId
+    });
   }
 
   // ---------------------------------------------
@@ -671,6 +717,7 @@
   // ---------------------------------------------
   function handleKangenClick() {
     const tone = window.soundManager ? window.soundManager.currentTone : 'kalimba';
+    const eventId = newEventId();
 
     if ('vibrate' in navigator) {
       navigator.vibrate([120, 80, 120, 80, 200]);
@@ -685,14 +732,16 @@
       type: 'KANGEN_ALERT',
       sender: currentRole,
       tone: tone,
+      eventId: eventId,
       timestamp: Date.now()
     });
 
-    sendPushToPartner(tone);
+    sendPushToPartner(tone, eventId);
   }
 
   function handleMoodSelect(mood) {
     if (window.soundManager) window.soundManager.playSoftTap();
+    const eventId = newEventId();
 
     if (currentRole === 'cowo') {
       moodCowo.textContent = mood;
@@ -704,8 +753,11 @@
       type: 'MOOD_UPDATE',
       sender: currentRole,
       mood: mood,
+      eventId: eventId,
       timestamp: Date.now()
     });
+
+    sendMoodPush(mood, eventId);
   }
 
   function handleSendNote(text) {
@@ -969,6 +1021,10 @@
       const newRole = roleBtnCowo.classList.contains('selected') ? 'cowo' : 'cewe';
       const newRoom = (roomCodeInput.value || 'love2024').toLowerCase().trim();
       const newDate = anniversaryInput.value;
+      if (!/^[a-z0-9_-]{4,40}$/.test(newRoom)) {
+        alert('PIN harus 4-40 karakter: huruf, angka, tanda - atau _ (tanpa spasi).');
+        return;
+      }
 
       if (newDate) {
         localStorage.setItem(KEY_ANNIVERSARY, newDate);
